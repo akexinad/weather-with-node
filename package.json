@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/akexinad/weather-with-node/issues"
   },
-  "homepage": "https://github.com/akexinad/weather-with-node#readme"
+  "homepage": "https://github.com/akexinad/weather-with-node#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
