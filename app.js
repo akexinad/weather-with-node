@@ -4,7 +4,9 @@ const request = require('request');
 
 const url = 'https://api.darksky.net/forecast/8f309f032cb56d3ea822766f089e0e51/37.8267,-122.4233';
 
-request({ url: url }, (error, response) => {
-  const data = JSON.parse(response.body);
-  console.log(data.currently);
+request({
+  url: url,
+  json: true
+}, (error, response) => {
+  console.log(response.body.currently);
 })
