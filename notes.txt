@@ -1,0 +1,33 @@
+################
+THE CALL STACK #
+################
+
+- This is a simple data structure provided by the V8 JavaScript engine.
+
+- The job of the call stack is to track the execution of our program and it does by keeping track of all the functions that are running in that time.
+
+  EX: When you get an error message in the CLI, the call stack is the stack of functions that are executed in order to get to the line of code where the error in question lies.
+
+
+###########
+NODE APIS #
+###########
+
+- setTimeout is not a JavaScript function, and V8 has no implementation for it.
+
+- It is node.js which creates an implementation for setTimeout using C++ and then provides to your node.js scripts ready to use.
+
+- There, when setTimeout is called, it is actually registered with Node API's, known as an 'event callback pair', where the event in this case is to wait the amount of time needed and the second is the function that you have decided to run inside the setTimeout function.
+
+- Another example of a callback pair are AJAX requests. That is, request to GET the data, and once the data has arrived, run another function to log the data in the console.
+
+- So while the setTimeout is waiting, the call stack is free to call another function since the setTimeout functions are executed in the Node API area and not in the call stack. This is how JS is NON BLOCKING.
+
+
+################
+CALLBACK QUEUE #
+################
+
+- The callback queue maintains a list of all the callback functions that need to be executed. So once the setTimeout time has elapsed, the callback function inside the setTimeout is sent to the callback queue.
+
+-From the callback queue, an event loop checks if the call stack is empty. If so, the function is then moved to the call stack, otherwise it waits in the callback queue.
