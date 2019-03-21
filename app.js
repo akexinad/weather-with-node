@@ -1,4 +1,5 @@
 const request = require('request');
+const chalk = require('chalk');
 
 // 42.5995, 11.2918
 
@@ -8,14 +9,16 @@ request({
   url: DarkSkyURL,
   json: true
 }, (error, response) => {
-  const current = response.body.currently;
-  const daily = response.body.daily.data[0];
-  // console.log(current);
-  // console.log(daily);
 
-  // console.log(`It is currently ${ current.temperature } degrees and there is ${ current.precipProbability }% chance of rain.`);
+  if (error) {
+    console.log('Unable to connect to Weather Service!');
+  } else if (response.body.error) {
+    console.log('Unable to find location');
+  } else {
+    const [ current, daily ] = [ response.body.currently, response.body.daily.data[0] ];
 
-  // console.log(`Oggi ci possiamo aspettare ${ daily.summary } In questo momento la temperatura e ${ current.temperature } con una probabilita di ${ current.precipProbability } percento di pioggia.`);
+    console.log(chalk.blue(`Oggi ci possiamo aspettare ${ daily.summary } In questo momento la temperatura e ${ current.temperature } con una probabilita di ${ current.precipProbability } percento di pioggia.`));
+  }
 })
 
 // Geocoding
@@ -26,7 +29,14 @@ request({
   url: MapBoxURL,
   json: true
 }, (error, response) => {
-  const [ latitude, longitude ] = [ response.body.features[0].center[1], response.body.features[0].center[0] ];
 
-  console.log(latitude, longitude);
+  if (error) {
+    console.log('Unable to connect to location services!');
+  } else if (response.body.features.length === 0) {
+    console.log(`Cannot locate ${ response.body.query }. Try another search.`);
+  } else {
+    const [ latitude, longitude ] = [ response.body.features[0].center[1], response.body.features[0].center[0] ];
+
+    console.log(latitude, longitude);
+  }
 })
