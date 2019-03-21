@@ -31,3 +31,10 @@ CALLBACK QUEUE #
 - The callback queue maintains a list of all the callback functions that need to be executed. So once the setTimeout time has elapsed, the callback function inside the setTimeout is sent to the callback queue.
 
 -From the callback queue, an event loop checks if the call stack is empty. If so, the function is then moved to the call stack, otherwise it waits in the callback queue.
+
+
+####################
+CALLBACK FUNCTIONS #
+####################
+
+- 
