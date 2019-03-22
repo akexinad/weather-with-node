@@ -18,8 +18,6 @@ const forecast = (latitude, longitude, callback) => {
       callback(undefined, chalk.blue(`${ daily.summary } \n\nIn questo momento la temperatura e ${ current.temperature } gradi con una probabilita di ${ current.precipProbability } percento di pioggia.`))
     }
   })
-
 }
-
 
 module.exports = forecast;
