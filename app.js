@@ -1,14 +1,25 @@
-const chalk = require('chalk');
-
 const geocode = require('./utils/geocode.js');
 const forecast = require('./utils/forecast.js')
 
-geocode('Florence', (error, data) => {
-  console.log('Error:', error);
-  console.log('Data:', data);
-})
+const location = process.argv[2];
 
-forecast(-75.7088, 44.1545, (error, data) => {
-  console.log('Error', error)
-  console.log('Data', data)
-})
+if (!location) {
+  return console.log("Please provide a location.");
+} else {
+  geocode(location, (error, geocodeData) => {
+
+    if (error) {
+      return console.error(error);
+    }
+
+    forecast(geocodeData.latitude, geocodeData.longitude, (error, forecastData) => {
+
+      if (error) {
+        return console.error(error)
+      }
+
+      console.log(geocodeData.location)
+      console.log(forecastData)
+    })
+  })
+}

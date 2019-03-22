@@ -15,7 +15,7 @@ const forecast = (latitude, longitude, callback) => {
     } else {
       const [ current, daily ] = [ response.body.currently, response.body.daily.data[0] ];
 
-      callback(undefined, chalk.blue(`Oggi ci possiamo aspettare ${ daily.summary } In questo momento la temperatura e ${ current.temperature } gradi con una probabilita di ${ current.precipProbability } percento di pioggia.`))
+      callback(undefined, chalk.blue(`${ daily.summary } \n\nIn questo momento la temperatura e ${ current.temperature } gradi con una probabilita di ${ current.precipProbability } percento di pioggia.`))
     }
   })
 
