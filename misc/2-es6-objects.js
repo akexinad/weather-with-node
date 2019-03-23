@@ -10,7 +10,7 @@ const user = {
   location: 'Philadelphia'
 }
 
-console.log(user);
+// console.log(user);
 
 // Object destructuring
 
@@ -22,18 +22,26 @@ const product = {
   rating: 4.2
 }
 
+console.log('Product before destructuring process:\n', product);
+
+// const {
+//   label:productLabel,
+//   stock,
+//   rating = 5
+// } = product;
+//
+// console.log(productLabel);
+// console.log(stock);
+// console.log(rating);
+
 const {
-  label:productLabel,
-  stock,
-  rating = 5
+  label:foo
 } = product;
 
-console.log(productLabel);
-console.log(stock);
-console.log(rating);
+console.log(foo);
 
 const transaction = (type, { label, stock }) => {
   console.log(type, label, stock);
 }
 
-transaction('order', product)
+transaction('Here goes the type: order', product)
