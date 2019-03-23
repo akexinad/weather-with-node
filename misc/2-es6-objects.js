@@ -24,15 +24,15 @@ const product = {
 
 console.log('Product before destructuring process:\n', product);
 
-// const {
-//   label:productLabel,
-//   stock,
-//   rating = 5
-// } = product;
-//
-// console.log(productLabel);
-// console.log(stock);
-// console.log(rating);
+const {
+  label:productLabel,
+  stock,
+  rating = 5
+} = product;
+
+console.log(productLabel);
+console.log(stock);
+console.log(rating);
 
 const {
   label:foo
